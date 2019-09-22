@@ -38,4 +38,25 @@ class QuickSort {
         arr[end] = swapTemp;
         return i + 1;
     }
+    
+    public static int partition2(int[] arr, int low, int high){
+
+        int pivot = arr[low];
+        int[] tempArray = new int[high-low + 1];
+        int left = 0;
+        int right = tempArray.length-1;
+
+        for(int i = low+1; i <= high; i++){
+            if (arr[i] <= pivot){
+                tempArray[left] = arr[i];
+                left++;
+            }else {
+                tempArray[right--] = arr[i];
+            }
+        }
+
+        tempArray[left] = pivot;
+        System.arraycopy(tempArray, 0, arr, low, tempArray.length);
+        return low+left;
+    }
 }
