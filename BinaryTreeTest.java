@@ -10,11 +10,17 @@ public class BinaryTreeTest {
         Node root = BinaryTree.buildTree(in, pre, 0, len - 1);
 
         // building the tree by printing inorder traversal
-        System.out.println("Inorder traversal of constructed tree is : ");
+        System.out.println("Height of tree is :"+BinaryTree.getHeight(root));
+        System.out.println("In order    : ");
         BinaryTree.inOrder(root);
         System.out.println();
-        System.out.println("Pre order traversal of constructed tree is : ");
+        System.out.println("Pre order   : ");
         BinaryTree.preOrder(root);
+        System.out.println();
+        System.out.println("Level order : ");
+        for (int i = 1; i <= BinaryTree.getHeight(root); i++) {
+            BinaryTree.levelOrder(root,i);
+        }
 
         System.out.print("\n============Case second===================\n");
 
@@ -27,14 +33,17 @@ public class BinaryTreeTest {
          root = BinaryTree.buildTree(in, pre, 0, len - 1);
 
         // building the tree by printing inorder traversal
-        System.out.println("Inorder traversal of constructed tree is : ");
+        System.out.println("Height of tree is :"+BinaryTree.getHeight(root));
+        System.out.println("Inorder traversal of constructed tree is   : ");
         BinaryTree.inOrder(root);
         System.out.println();
-        System.out.println("Pre order traversal of constructed tree is : ");
+        System.out.println("Pre order   : ");
         BinaryTree.preOrder(root);
-
-
-
+        System.out.println();
+        System.out.println("Level order : ");
+        for (int i = 1; i <= BinaryTree.getHeight(root); i++) {
+            BinaryTree.levelOrder(root,i);
+        }
     }
 }
 
@@ -98,6 +107,25 @@ class BinaryTree {
         postOrder(root.left);
         postOrder(root.right);
         System.out.print(root.data+" ");
+    }
+
+    public static void levelOrder(Node root, int level){
+        if (root == null){
+            return;
+        }
+        if (level == 1) {
+            System.out.print(root.data+" ");
+        }
+        levelOrder(root.left, level-1);
+        levelOrder(root.right, level-1);
+    }
+
+    public static int getHeight(Node head){
+        if (head == null) {
+            return 0;
+        }else {
+            return 1+ Math.max(getHeight(head.left),getHeight(head.right));
+        }
     }
 }
 
