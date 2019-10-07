@@ -1,4 +1,6 @@
-
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class BinaryTreeTest {
 
@@ -11,17 +13,19 @@ public class BinaryTreeTest {
 
         // building the tree by printing inorder traversal
         System.out.println("Height of tree is :"+BinaryTree.getHeight(root));
-        System.out.println("In order    : ");
+        System.out.print("In order    : ");
         BinaryTree.inOrder(root);
         System.out.println();
-        System.out.println("Pre order   : ");
+        System.out.print("Pre order   : ");
         BinaryTree.preOrder(root);
         System.out.println();
-        System.out.println("Level order : ");
+        System.out.print("Level order : ");
         for (int i = 1; i <= BinaryTree.getHeight(root); i++) {
             BinaryTree.levelOrder(root,i);
         }
-
+        System.out.println();
+        System.out.print("Level order2: ");
+        BinaryTree.levelOrder2(root);
         System.out.print("\n============Case second===================\n");
 
         //'D', 'B', 'E', 'A', 'F', 'C'
@@ -33,17 +37,22 @@ public class BinaryTreeTest {
          root = BinaryTree.buildTree(in, pre, 0, len - 1);
 
         // building the tree by printing inorder traversal
-        System.out.println("Height of tree is :"+BinaryTree.getHeight(root));
-        System.out.println("Inorder traversal of constructed tree is   : ");
+        System.out.println("Height of tree is :"+BinaryTree.getHeight2(root));
+        System.out.print("In  order   : ");
         BinaryTree.inOrder(root);
         System.out.println();
-        System.out.println("Pre order   : ");
+        System.out.print("Pre order   : ");
         BinaryTree.preOrder(root);
         System.out.println();
-        System.out.println("Level order : ");
+        System.out.print("Level order : ");
         for (int i = 1; i <= BinaryTree.getHeight(root); i++) {
             BinaryTree.levelOrder(root,i);
         }
+        System.out.println();
+        System.out.print("Level order2: ");
+        BinaryTree.levelOrder2(root);
+        System.out.print("\nVertical sum: ");
+        BinaryTree.printVerticalSum(root);
     }
 }
 
@@ -82,6 +91,40 @@ class BinaryTree {
         return -1;
     }
 
+    public static void printVerticalSum(Node root){
+        LLNode llNode = new LLNode(0);
+        printVerticalSum(root, llNode);
+
+        while (llNode.prev != null){
+            llNode = llNode.prev;
+        }
+        while (llNode !=  null){
+            System.out.print(llNode.data+ " ");
+            llNode = llNode.next;
+        }
+    }
+
+    public static void printVerticalSum(Node root, LLNode llNode){
+        if( root == null || llNode == null){
+            return;
+        }
+        llNode.data = root.data + llNode.data;
+        if (root.left != null){
+            if (llNode.prev == null){
+                llNode.prev = new LLNode(0);
+                llNode.prev.next = llNode;
+            }
+            printVerticalSum(root.left, llNode.prev);
+        }
+        if (root.right != null){
+            if (llNode.next == null){
+                llNode.next = new LLNode(0);
+                llNode.next.prev = llNode;
+            }
+            printVerticalSum(root.right, llNode.next);
+        }
+    }
+
     public static void inOrder(Node root){
         if (root == null){
             return;
@@ -109,6 +152,26 @@ class BinaryTree {
         System.out.print(root.data+" ");
     }
 
+    //O(n) complexity
+    public static void levelOrder2(Node root){
+        Queue<Node> queue = new ArrayDeque<>();
+        if (root != null) {
+            queue.add(root);
+        }
+        while (!queue.isEmpty()){
+            Node temp = queue.poll();
+            System.out.print(temp.data+ " ");
+            if (temp.left != null){
+                queue.add(temp.left);
+            }
+            if (temp.right != null){
+                queue.add(temp.right);
+            }
+        }
+
+    }
+
+    // worst case O(n^2)
     public static void levelOrder(Node root, int level){
         if (root == null){
             return;
@@ -120,6 +183,7 @@ class BinaryTree {
         levelOrder(root.right, level-1);
     }
 
+    // recursion
     public static int getHeight(Node head){
         if (head == null) {
             return 0;
@@ -127,7 +191,38 @@ class BinaryTree {
             return 1+ Math.max(getHeight(head.left),getHeight(head.right));
         }
     }
-}
+
+    // iterative method
+    static int getHeight2(Node node) {
+        // Base Case
+        if (node == null)
+            return 0;
+
+        Queue<Node> q = new LinkedList();
+        q.add(node);
+        int height = 0;
+
+        while (true) {
+            // nodeCount (queue size) indicates number of nodes at current lelvel.
+            int nodeCount = q.size();
+            if (nodeCount == 0)
+                return height;
+            height++;
+
+            // Dequeue all nodes of current level and Enqueue all nodes of next level
+            while (nodeCount > 0) {
+                Node newNode = q.poll();
+                System.out.print(newNode.data+" ");
+                if (newNode.left != null)
+                    q.add(newNode.left);
+                if (newNode.right != null)
+                    q.add(newNode.right);
+                nodeCount--;
+            }
+            System.out.println();
+        }
+    }
+    }
 
 class Node {
     int data;
