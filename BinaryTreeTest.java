@@ -1,6 +1,7 @@
 import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 public class BinaryTreeTest {
 
@@ -40,6 +41,8 @@ public class BinaryTreeTest {
         System.out.println("Height of tree is :" + BinaryTree.getHeight2(root));
         System.out.print("In  order   : ");
         BinaryTree.inOrder(root);
+        System.out.print("\nIn  order2  : ");
+        BinaryTree.inOrder2(root);
         System.out.println();
         System.out.print("Pre order   : ");
         BinaryTree.preOrder(root);
@@ -134,6 +137,24 @@ class BinaryTree {
         inOrder(root.right);
     }
 
+    // iterative method for inorder
+    public static void inOrder2(Node root) {
+
+        Node current = root;
+        Stack<Node> stack = new Stack<>();
+        while ( current != null || stack.size() > 0){
+
+            while (current != null){
+                stack.push(current);
+                current = current.left;
+            }
+
+            current = stack.pop();
+            System.out.print(current.data + " ");
+            current = current.right;
+        }
+    }
+
     public static void preOrder(Node root) {
         if (root == null) {
             return;
@@ -219,6 +240,42 @@ class BinaryTree {
             System.out.println();
         }
         return height;
+    }
+
+    public Node deletionBT(Node root, int key){
+        //Write your code here and return the root of the changed tree
+        if(root == null){
+            return root;
+        }
+        Queue<Node> queue = new ArrayDeque<>();
+        Node keyNode = new Node(0);
+        Node node = new Node(0);
+        Node parent = new Node(0);
+        queue.add(root);
+        while(!queue.isEmpty()){
+            node = queue.poll();
+            if(node.data == key){
+                keyNode = node;
+            }
+            if(node.left != null){
+                parent = node;
+                queue.add(node.left);
+            }
+            if(node.right != null){
+                parent = node;
+                queue.add(node.right);
+            }
+        }
+        keyNode.data = node.data;
+        if(parent.left == node){
+            parent.left = null;
+        }
+
+        if(parent.right == node){
+            parent.right = null;
+        }
+        node =null;
+        return root;
     }
 }
 

@@ -2,7 +2,7 @@
 
 Must do Tree problem.
 
-* Check if two given binary trees are identical or not | Iterative & Recursive
+* Check if two given binary trees are identical or not | Iterative & Recursive 
 * Calculate height of a binary tree | Iterative & Recursive
 * Delete given Binary Tree | Iterative & Recursive
 * Inorder Tree Traversal | Iterative & Recursive
