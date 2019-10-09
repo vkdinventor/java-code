@@ -9,8 +9,11 @@ Must do Tree problem.
 * Preorder Tree Traversal | Iterative & Recursive  -> use stack
 * Postorder Tree Traversal | Iterative & Recursive -> use two stack
 * Level Order Traversal of Binary Tree -> queue
-* Spiral Order Traversal of Binary Tree
-* Reverse Level Order Traversal of Binary Tree
+* Spiral Order Traversal of Binary Tree -> ques and stack or only stack
+
+* Reverse Level Order Traversal of Binary Tree 
+    similar to iterative level order put result in stack and pop it at the end of iteration.
+    
 * Print all nodes of a given binary tree in specific order
 * Print Left View of a Binary Tree
 * Print Right View of a Binary Tree

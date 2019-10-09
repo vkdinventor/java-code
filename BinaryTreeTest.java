@@ -14,6 +14,8 @@ public class BinaryTreeTest {
 
         // building the tree by printing inorder traversal
         System.out.println("Height of tree is :" + BinaryTree.getHeight2(root));
+        System.out.println("Spiral of tree is :");
+        BinaryTree.spiralOrder(root);
         System.out.print("In order    : ");
         BinaryTree.inOrder(root);
         System.out.println();
@@ -242,6 +244,41 @@ class BinaryTree {
         }
         levelOrder(root.left, level - 1);
         levelOrder(root.right, level - 1);
+    }
+
+    public static void spiralOrder(Node root){
+        Queue<Node> queue = new ArrayDeque<>();
+        Queue<Integer> resultQueue = new ArrayDeque<>();
+        Stack<Integer> resultStack = new Stack<>();
+
+        queue.add(root);
+        boolean isLtoR = false;
+        while (!queue.isEmpty()){
+
+            int count = queue.size();
+            while (count > 0){
+                Node node = queue.poll();
+                if(isLtoR){
+                    resultQueue.add(node.data);
+                }else {
+                    resultStack.add(node.data);
+                }
+                if(node.left != null){
+                    queue.add(node.left);
+                }
+                if(node.right != null){
+                    queue.add(node.right);
+                }
+                count--;
+            }
+             isLtoR = !isLtoR;
+            while (!resultQueue.isEmpty()){
+                System.out.print(resultQueue.poll()+" ");
+            }
+            while (!resultStack.isEmpty()){
+                System.out.print(resultStack.pop()+" ");
+            }
+        }
     }
 
     // recursion
