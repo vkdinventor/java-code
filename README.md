@@ -5,10 +5,10 @@ Must do Tree problem.
 * Check if two given binary trees are identical or not | Iterative & Recursive 
 * Calculate height of a binary tree | Iterative & Recursive
 * Delete given Binary Tree | Iterative & Recursive
-* Inorder Tree Traversal | Iterative & Recursive
-* Preorder Tree Traversal | Iterative & Recursive
-* Postorder Tree Traversal | Iterative & Recursive
-* Level Order Traversal of Binary Tree
+* Inorder Tree Traversal | Iterative & Recursive  -> use stack
+* Preorder Tree Traversal | Iterative & Recursive  -> use stack
+* Postorder Tree Traversal | Iterative & Recursive -> use two stack
+* Level Order Traversal of Binary Tree -> queue
 * Spiral Order Traversal of Binary Tree
 * Reverse Level Order Traversal of Binary Tree
 * Print all nodes of a given binary tree in specific order

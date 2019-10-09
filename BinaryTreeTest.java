@@ -46,6 +46,12 @@ public class BinaryTreeTest {
         System.out.println();
         System.out.print("Pre order   : ");
         BinaryTree.preOrder(root);
+        System.out.print("\nPre order2  : ");
+        BinaryTree.preOrder2(root);
+        System.out.print("\nPost order : ");
+        BinaryTree.postOrder(root);
+        System.out.print("\nPost order2: ");
+        BinaryTree.postOrder2(root);
         System.out.println();
         System.out.print("Level order : ");
         for (int i = 1; i <= BinaryTree.getHeight(root); i++) {
@@ -164,6 +170,21 @@ class BinaryTree {
         preOrder(root.right);
     }
 
+    public static void preOrder2(Node root){
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()){
+            Node node = stack.pop();
+            System.out.print(node.data+" ");
+            if(node.right != null){
+                stack.push(node.right);
+            }
+            if(node.left != null){
+                stack.push(node.left);
+            }
+        }
+    }
+
     public static void postOrder(Node root) {
         if (root == null) {
             return;
@@ -171,6 +192,25 @@ class BinaryTree {
         postOrder(root.left);
         postOrder(root.right);
         System.out.print(root.data + " ");
+    }
+
+    public static void postOrder2(Node root) {
+        Stack<Node> s1 = new Stack<>();
+        Stack<Node> s2 = new Stack<>();
+        s1.push(root);
+        while (!s1.isEmpty()){
+            Node node = s1.pop();
+            s2.push(node);
+            if(node.left != null){
+                s1.push(node.left);
+            }
+            if( node.right != null){
+                s1.push(node.right);
+            }
+        }
+        while (!s2.isEmpty()) {
+            System.out.print(s2.pop().data + " ");
+        }
     }
 
     //O(n) complexity
