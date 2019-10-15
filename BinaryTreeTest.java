@@ -319,6 +319,61 @@ class BinaryTree {
         return height;
     }
 
+    static void leftView(Node node) {
+        // Base Case
+        if (node == null)
+            return;
+
+        Queue<Node> q = new LinkedList<>();
+        q.add(node);
+
+        while (!q.isEmpty()) {
+            // nodeCount (queue size) indicates number of nodes at current lelvel.
+            int nodeCount = q.size();
+            // Dequeue all nodes of current level and Enqueue all nodes of next level
+            boolean isFirst = true;
+            while (nodeCount > 0) {
+                Node newNode = q.poll();
+                if (isFirst) {
+                    System.out.print(newNode.data+" ");
+                    isFirst = false;
+                }
+                if (newNode.left != null)
+                    q.add(newNode.left);
+                if (newNode.right != null)
+                    q.add(newNode.right);
+                nodeCount--;
+            }
+        }
+        return;
+    }
+
+    static void rightView(Node node) {
+        // Base Case
+        if (node == null)
+            return;
+
+        Queue<Node> q = new LinkedList<>();
+        q.add(node);
+
+        while (!q.isEmpty()) {
+            // nodeCount (queue size) indicates number of nodes at current lelvel.
+            int nodeCount = q.size();
+            // Dequeue all nodes of current level and Enqueue all nodes of next level
+            while (nodeCount > 0) {
+                Node newNode = q.poll();
+                if (newNode.left != null)
+                    q.add(newNode.left);
+                if (newNode.right != null)
+                    q.add(newNode.right);
+                nodeCount--;
+                if (nodeCount == 0) {
+                    System.out.print(newNode.data+" ");
+                }
+            }
+        }
+    }
+
     public Node deletionBT(Node root, int key){
         //Write your code here and return the root of the changed tree
         if(root == null){

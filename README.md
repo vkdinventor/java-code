@@ -13,10 +13,14 @@ Must do Tree problem.
 
 * Reverse Level Order Traversal of Binary Tree 
     similar to iterative level order put result in stack and pop it at the end of iteration.
+    put right first then left
     
 * Print all nodes of a given binary tree in specific order
+
 * Print Left View of a Binary Tree
 * Print Right View of a Binary Tree
+    both similar to iterative level order
+    
 * Print Bottom View of Binary Tree
 * Print Top View of Binary Tree
 * Find next node in same level for given node in a binary tree
