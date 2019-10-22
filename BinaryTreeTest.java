@@ -1,7 +1,13 @@
 import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.TreeMap;
 
 public class BinaryTreeTest {
 
@@ -64,6 +70,8 @@ public class BinaryTreeTest {
         BinaryTree.levelOrder2(root);
         System.out.print("\nVertical sum: ");
         BinaryTree.printVerticalSum(root);
+        System.out.print("\nVertical traversal: ");
+        BinaryTree.printVertical(root);
     }
 }
 
@@ -372,6 +380,34 @@ class BinaryTree {
                 }
             }
         }
+    }
+
+    public static void printVertical(Node node){
+        Map<Integer, List<Integer>> map = new TreeMap<>();
+        verticalTraversal(node, 0, map);
+
+        for(Map.Entry<Integer, List<Integer>> col : map.entrySet() ){
+            System.out.println(Arrays.toString(col.getValue().toArray()));
+        }
+    }
+
+    public static void verticalTraversal(Node node, int hd, Map<Integer, List<Integer>> map) {
+
+        if (node == null) {
+            return;
+        }
+        List<Integer> list;
+        list = map.get(hd);
+        if (list != null) {
+            list.add(node.data);
+        } else {
+            list = new ArrayList<>();
+            list.add(node.data);
+        }
+        map.put(hd,list);
+        verticalTraversal(node.left, hd - 1, map);
+        verticalTraversal(node.right, hd + 1, map);
+
     }
 
     public Node deletionBT(Node root, int key){
