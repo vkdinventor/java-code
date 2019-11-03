@@ -23,6 +23,21 @@ public class GraphTest {
 
         new GraphTraversal().dfsPath(2, g);
 
+        /*
+        29 4
+6 21 17 12 2 11 9 11
+         */
+        Graph graph1 = new Graph(29);
+        graph1.addEdge(6,21);
+        graph1.addEdge(17,12);
+        graph1.addEdge(2,11);
+        graph1.addEdge(9,11);
+        List<List<Integer>> graph = new ArrayList<>();
+        for(int i=0; i< 29; i++){
+            graph.add(graph1.adj(i));
+        }
+        System.out.print(GraphTraversal.isCyclic(graph, 29));
+
     }
 }
 
@@ -82,6 +97,98 @@ class GraphTraversal {
         }
     }
 
+
+    static Boolean isCyclicUtil(int v, List<List<Integer>> list, Boolean[] visited, int parent) {
+        // Mark the current node as visited
+        visited[v] = true;
+        // Recur for all the vertices adjacent to this vertex
+        for (Integer i : list.get(v)) {
+            // If an adjacent is not visited, then recur for that adjacent
+            if (!visited[i]) {
+                if (isCyclicUtil(i, list, visited, v))
+                    return true;
+            } else if (i != parent) {
+                // If an adjacent is visited and not parent of current vertex, then there is a cycle.
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Returns true if the graph contains a cycle, else false.
+    static boolean isCyclic(List<List<Integer>> list, int V) {
+        // Mark all the vertices as not visited and not part of recursion stack
+        Boolean[] visited = new Boolean[V];
+
+        // Call the recursive helper function to detect cycle in different DFS trees
+        for (int u = 0; u < V; u++)
+            // Don't recur for u if already visited
+            if (!visited[u]) {
+                if (isCyclicUtil(u, list, visited, -1)) {
+                    return true;
+                }
+            }
+        return false;
+    }
+
+    boolean bfsInMatrix(int[][] G, int v) {
+        //add code here.
+        boolean[] marked = new boolean[v];
+        Queue<Integer> q = new ArrayDeque<>();
+        int src = G[0][0];
+        marked[src] = true;
+        q.add(src);
+        while (!q.isEmpty()) {
+            Integer a = q.poll();
+            //System.out.print(a+" ");
+            for (int i = 0; i < v; i++) {
+                if (G[a][i] == 1 && !marked[i]) {
+                    marked[i] = true;
+                    q.add(i);
+                }
+            }
+        }
+        return true;
+    }
+
+    public static boolean isBipartite(int[][] G, int V) {
+
+        int[] colorArr = new int[V];
+        for (int i = 0; i < V; ++i)
+            colorArr[i] = -1;
+        // This code is to handle disconnected graoh
+        for (int i = 0; i < V; i++)
+            if (colorArr[i] == -1)
+                if (!isBipartiteUtil(G, V, colorArr, i))
+                    return false;
+
+        return true;
+    }
+
+    public static boolean isBipartiteUtil(int[][] G, int v, int[] colorArr, int src) {
+
+        Queue<Integer> q = new ArrayDeque<>();
+        colorArr[src] = 1;
+        q.add(src);
+        while (!q.isEmpty()) {
+            Integer a = q.poll();
+            // self loop
+            if (G[a][a] == 1) {
+                return false;
+            }
+            //System.out.print(a+" ");
+            for (int i = 0; i < v; i++) {
+                if (G[a][i] == 1 && colorArr[i] == -1) {
+                    colorArr[i] = 1 - colorArr[a];
+                    q.add(i);
+                } else if (G[a][i] == 1 && colorArr[i] == colorArr[a]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public static void verticesConnectedTo(int s, Graph graph){
         Path path = new Path(s, graph);
         for(int i : graph.adj(s)){
@@ -110,7 +217,7 @@ class Graph {
 
     public void addEdge(int v, int w){
         adj[v].add(w);
-        //adj[w].add(v);
+        adj[w].add(v);
     }
 
     List<Integer> adj(int v){
