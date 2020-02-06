@@ -11,6 +11,14 @@ import java.util.Stack;
 import java.util.TreeMap;
 
 public class BinaryTreeTest {
+    
+    /*
+Depth First Traversals:
+(a) Inorder (Left, Root, Right) : 4 2 5 1 3
+(b) Preorder (Root, Left, Right) : 1 2 4 5 3
+(c) Postorder (Left, Right, Root) : 4 5 2 3 1
+
+*/
 
     public static void main(String[] args) {
         int[] in = new int[]{9, 8, 4, 2, 10, 5, 10, 1, 6, 3, 13, 12, 7};
