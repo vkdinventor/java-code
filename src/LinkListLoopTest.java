@@ -1,4 +1,4 @@
-
+;
 // Java program to detect and remove loop in linked list
 
 class LinkListLoopTest {
@@ -90,6 +90,7 @@ class LinkListLoopTest {
             fast = fast.next.next;
             slow = slow.next;
             if(fast == slow){
+                System.out.println("Loop found at: "+slow.data);
                 removeLoop2(head, slow);
                 return;
             }
@@ -121,14 +122,40 @@ class LinkListLoopTest {
         list.head.next.next = new Node(3);
         list.head.next.next.next = new Node(4);
         list.head.next.next.next.next = new Node(5);
+        list.head.next.next.next.next.next = new Node(6);
+        list.head.next.next.next.next.next.next = new Node(7);
+        list.head.next.next.next.next.next.next.next = new Node(8);
 
         // Creating a loop for testing
-        head.next.next.next.next.next = head.next.next;
+        head.next.next.next.next.next.next.next.next = head.next.next;
         //list.detectAndRemoveLoop(head);
-        LinkListLoopTest.removeTheLoop(head);
+        LinkListLoopTest.optimizedLoopRemoval(head);
         System.out.println("Linked List after removing loop : ");
         list.printList(head);
         System.out.println("Total time in mili : "+(System.nanoTime()-t));
+    }
+
+    public static void optimizedLoopRemoval(Node head){
+
+        Node slow = head, fast = head;
+        while (slow != null && fast != null &&  fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast){
+                break;
+            }
+        }
+
+        if (slow == null || fast == null || slow != fast){
+            return;
+        }
+
+        slow = head;
+        while (slow.next != fast.next){
+            slow = slow.next;
+            fast = fast.next;
+        }
+        fast.next = null;
     }
 }
 

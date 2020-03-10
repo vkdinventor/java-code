@@ -1,8 +1,8 @@
+;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +13,14 @@ import java.util.TreeMap;
 public class BinaryTreeTest {
 
     public static void main(String[] args) {
+
+        /*
+        * (a) Inorder (Left, Root, Right) : 4 2 5 1 3
+        (b) Preorder (Root, Left, Right) : 1 2 4 5 3
+        (c) Postorder (Left, Right, Root) : 4 5 2 3 1
+        *
+        * */
+
         int[] in = new int[]{9, 8, 4, 2, 10, 5, 10, 1, 6, 3, 13, 12, 7};
         int[] pre = new int[]{1, 2, 4, 8, 9, 5, 10, 10, 3, 6, 7, 12, 13};
         int len = in.length;
@@ -187,6 +195,7 @@ class BinaryTree {
         while (!stack.isEmpty()){
             Node node = stack.pop();
             System.out.print(node.data+" ");
+            // because it is pop
             if(node.right != null){
                 stack.push(node.right);
             }
@@ -357,6 +366,21 @@ class BinaryTree {
         return;
     }
 
+    public static int isBalanced(TreeNode root) {
+        if (root == null) {
+            return 1;
+        }
+
+        if (root.left == null && (root.right != null && (root.right.right != null || root.right.left != null))) {
+            return 0;
+        }
+
+        if (root.right == null && (root.left != null && (root.left.right != null || root.left.left != null))) {
+            return 0;
+        }
+        return Math.min(isBalanced(root.left), isBalanced(root.right));
+    }
+
     static void rightView(Node node) {
         // Base Case
         if (node == null)
@@ -411,6 +435,34 @@ class BinaryTree {
 
     }
 
+    public Node flatten(Node a) {
+
+        Stack<Node> stack  = new Stack<>();
+        stack.push(a);
+        Node current = null;
+        Node head = null;
+        while(!stack.isEmpty()){
+            Node temp = stack.pop();
+            if(head == null){
+                current = temp;
+                head = current;
+            }else {
+                current.right = temp;
+                current.left = null;
+                current = current.right;
+            }
+            current = current.right;
+            //System.out.print(temp.val+" ");
+            if(temp.right != null){
+                stack.push(temp.right);
+            }
+            if(temp.left != null){
+                stack.push(temp.left);
+            }
+        }
+        return head;
+    }
+
     public Node deletionBT(Node root, int key){
         //Write your code here and return the root of the changed tree
         if(root == null){
@@ -445,6 +497,29 @@ class BinaryTree {
         }
         node =null;
         return root;
+    }
+
+    private TreeNode prev = null;
+
+    public boolean isValidBST(TreeNode A) {
+        prev = null;
+        return isBST(A);
+    }
+
+    private boolean isBST(TreeNode node) {
+        // traverse the tree in inorder fashion and keep a track of previous node
+        if (node != null) {
+            if (!isBST(node.left)) {
+                return false;
+            }
+            // allows only distinct values node
+            if (prev != null && node.val <= prev.val) {
+                return false;
+            }
+            prev = node;
+            return isBST(node.right);
+        }
+        return true;
     }
 }
 

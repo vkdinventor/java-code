@@ -1,6 +1,5 @@
-/*package whatever //do not write package name here */
+;/*package whatever //do not write package name here */
 
-import java.io.*;
 import java.util.concurrent.*;
 
 
@@ -9,7 +8,7 @@ import java.util.concurrent.*;
 Print even and odd nubmer usting two thread
 */
 
-class GFG {
+public class EvenOddThread {
 	public static void main (String[] args) {
 		System.out.println("GfG!");
 		Printer sp = new Printer();

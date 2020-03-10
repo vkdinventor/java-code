@@ -1,3 +1,7 @@
+package graph;
+
+;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -70,7 +74,7 @@ class TopologicalSort {
 class Digraph {
 
     //create a digraph from input stream
-    //Digraph(In in)
+    //graph.Digraph(In in)
     private final int V;
     private final List<Integer>[] adj;
 

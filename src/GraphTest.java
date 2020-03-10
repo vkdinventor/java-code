@@ -1,3 +1,5 @@
+;
+
 import java.util.*;
 import java.lang.*;
 
@@ -188,6 +190,41 @@ class GraphTraversal {
         }
         return true;
     }
+
+    // Bipirate using dfs
+    public static boolean isBipartite2(int[][] G, int V) {
+        boolean[] marked = new boolean[V];
+        boolean[] color = new boolean[V];
+        // This code is to handle disconnected graoh
+        for (int i = 0; i < V; i++) {
+            if (!marked[i]){
+                if (!isBipartiteUtil(i, G, V, marked, color)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public static boolean isBipartiteUtil(int src, int[][] graph, int v, boolean[] marked, boolean[] color) {
+
+        for(int i=0; i < v; i++){
+            if(graph[src][i] == 1){
+                if(!marked[i]){
+                    marked[src] = true;
+                    color[i] = !color[src];
+                    if(!isBipartiteUtil(i, graph, v, marked, color)){
+                        return false;
+                    }
+                }else {
+                    if(color[src] == color[i]){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
 
     public static void verticesConnectedTo(int s, Graph graph){
         Path path = new Path(s, graph);

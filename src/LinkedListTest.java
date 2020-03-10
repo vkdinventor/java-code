@@ -1,3 +1,4 @@
+;
 
 import java.util.*;
 
@@ -11,9 +12,17 @@ class LLNode {
         next = null;
         prev = null;
     }
+
+    public void printList() {
+        LLNode temp = this;
+        while (temp != null) {
+            System.out.print(temp.data + "->");
+            temp = temp.next;
+        }
+    }
 }
 
-class MyLinkedList {
+ class MyLinkedList {
     LLNode head;
 
     public void addToTheLast(LLNode node) {
@@ -41,14 +50,17 @@ class MyLinkedList {
 
 
         //5 2 2 4
+        //LinkedList
         MyLinkedList llist = new MyLinkedList();
         llist.addToTheLast(new LLNode(5));
-        llist.addToTheLast(new LLNode(2));
-        llist.addToTheLast(new LLNode(2));
         llist.addToTheLast(new LLNode(4));
+        llist.addToTheLast(new LLNode(3));
+        llist.addToTheLast(new LLNode(2));
+        llist.addToTheLast(new LLNode(1));
         //llist.printList();
-        GfG g = new GfG();
-        llist.head = g.removeDuplicates(llist.head);
+        //GfG g = new GfG();
+        //llist.head = g.removeDuplicates(llist.head);
+        //llist.head = llist.insertionSortList(llist.head);
         llist.printList();
     }
 }

@@ -1,3 +1,5 @@
+;
+
 public class ConnectedComponent {
 
     private boolean[] marked;
