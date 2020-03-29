@@ -30,7 +30,6 @@ class PascalTriangleUtil {
                 System.out.print(result[line][index]+" ");
             }
             System.out.println();
-            Integer.toBinaryString(100);
         }
 
         return list;

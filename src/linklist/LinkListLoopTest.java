@@ -1,3 +1,5 @@
+package linklist;
+
 ;
 // Java program to detect and remove loop in linked list
 
@@ -16,7 +18,7 @@ class LinkListLoopTest {
 
         @Override
         public String toString() {
-            return "Node{" +
+            return "tree.Node{" +
                     "data=" + data +
                     '}';
         }

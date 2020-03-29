@@ -1,26 +1,8 @@
+package linklist;
+
 ;
 
 import java.util.*;
-
-class LLNode {
-    int data;
-    LLNode next;
-    LLNode prev;
-
-    LLNode(int d) {
-        data = d;
-        next = null;
-        prev = null;
-    }
-
-    public void printList() {
-        LLNode temp = this;
-        while (temp != null) {
-            System.out.print(temp.data + "->");
-            temp = temp.next;
-        }
-    }
-}
 
  class MyLinkedList {
     LLNode head;
@@ -58,7 +40,7 @@ class LLNode {
         llist.addToTheLast(new LLNode(2));
         llist.addToTheLast(new LLNode(1));
         //llist.printList();
-        //GfG g = new GfG();
+        //linklist.GfG g = new linklist.GfG();
         //llist.head = g.removeDuplicates(llist.head);
         //llist.head = llist.insertionSortList(llist.head);
         llist.printList();
@@ -68,11 +50,11 @@ class LLNode {
 
 /*This is a function problem.You only need to complete the function given below*/
 /* The structure of linked list is the following
-class Node
+class tree.Node
 {
     int data;
-    Node next;
-    Node(int d) {
+    tree.Node next;
+    tree.Node(int d) {
         data = d;
         next = null;
     }

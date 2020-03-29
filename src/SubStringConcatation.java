@@ -15,16 +15,14 @@ public class SubStringConcatation {
         ArrayList<String> listKey = new ArrayList<>(Arrays.asList("foo", "bar"));
         ArrayList<Integer> ans = findSubstring("barfoothefoobarman", listKey);
         System.out.println(Arrays.toString(ans.toArray()));
-
-        System.out.println(minWindow("ADOBECODEBANC","ABC"));
-
+        System.out.println(minWindow("ADOBECODEBANC", "ABC"));
     }
 
-    public static String minWindow(String S, String T){
+    public static String minWindow(String S, String T) {
         int[] src = new int[256];
         int[] target = new int[256];
 
-        for(int i = 0; i< T.length(); i++){
+        for (int i = 0; i < T.length(); i++) {
             target[T.charAt(i)]++;
         }
 
@@ -36,22 +34,22 @@ public class SubStringConcatation {
         //A : "ADOBECODEBANC"
         //B : "ABC"
 
-        for (int i =0; i< S.length(); i++){
+        for (int i = 0; i < S.length(); i++) {
             char ch = S.charAt(i);
             src[ch]++;
-            if(src[ch] <= target[ch]){
+            if (src[ch] <= target[ch]) {
                 count++;
             }
 
-            if (count == T.length()){
-                while (src[S.charAt(start)] > target[S.charAt(start)]){
+            if (count == T.length()) {
+                while (src[S.charAt(start)] > target[S.charAt(start)]) {
                     src[S.charAt(start)]--;
                     start++;
                 }
 
-                if(i-start+1 < minWindow){
-                    res = S.substring(start, i+1);
-                    minWindow = i-start + 1;
+                if (i - start + 1 < minWindow) {
+                    res = S.substring(start, i + 1);
+                    minWindow = i - start + 1;
                 }
             }
 

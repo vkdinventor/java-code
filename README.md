@@ -23,10 +23,10 @@ Must do Tree problem.
     
 * Print Bottom View of Binary Tree
 * Print Top View of Binary Tree
-* Find next node in same level for given node in a binary tree
+* Find next treeNode in same level for given treeNode in a binary tree
 * Check if given binary tree is complete binary tree or not
 * Determine if given two nodes are cousins of each other
-* Print cousins of given node in a binary tree
+* Print cousins of given treeNode in a binary tree
 * In-place convert given binary tree to its sum tree
 * Check if given binary tree is a sum tree or not
 * Combinations of words formed by replacing given numbers with corresponding alphabets
@@ -37,7 +37,7 @@ Must do Tree problem.
 * Check if binary tree can be converted to another by doing any no. of swaps of left & right child
 * Find Lowest Common Ancestor (LCA) of two nodes in a binary tree
 * Print all paths from root to leaf nodes in given binary tree
-* Find ancestors of given node in a Binary Tree
+* Find ancestors of given treeNode in a Binary Tree
 * Find the distance between given pairs of nodes in a binary tree
 * Find Vertical Sum in a given Binary Tree
 * Print nodes in vertical order of a given Binary Tree (Vertical Traversal)
@@ -54,12 +54,12 @@ Must do Tree problem.
 * Determine if given Binary Tree is a BST or not
 * Convert a Binary Tree to BST by maintaining its original structure
 * Invert given Binary Tree | Recursive and Iterative solution
-* Print leaf to root path for every leaf node in a binary tree
+* Print leaf to root path for every leaf treeNode in a binary tree
 * Find maximum width of given binary tree
 * Build Binary Tree from given Parent array
 * Find all nodes at given distance from leaf nodes in a binary tree
 * Count all subtrees having same value of nodes in a binary tree
-* Find Maximum Difference Between a Node and its Descendants in a Binary Tree
+* Find Maximum Difference Between a linklist.Node and its Descendants in a Binary Tree
 * Construct a Binary Tree from Ancestor Matrix
 * Calculate height of a binary tree with leaf nodes forming a circular doubly linked list
 

@@ -29,6 +29,24 @@ public class LongestComnSubSeq {
         for(int i=0; i <=n; i++){
             System.out.println(Arrays.toString(dp[i]));
         }
+
+        int i= n;
+        int j = n;
+        StringBuilder sb = new StringBuilder();
+        while(i > 0 && j >0){
+            if(str1.charAt(j-1) == str2.charAt(i-1)){
+                sb.insert(0,str1.charAt(j-1));
+                i--;
+                j--;
+            }else {
+                if(dp[i][j-1] > dp [i-1][j]){
+                    j--;
+                }else{
+                    i--;
+                }
+            }
+        }
+        System.out.println(sb);
         return dp[n][m];
     }
 
