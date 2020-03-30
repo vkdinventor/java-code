@@ -1,4 +1,4 @@
-;
+package sort;
 
 import java.util.Arrays;
 
@@ -8,8 +8,6 @@ class QuickSort {
         int[] arr = new int[]{9,8,10,11,2,7,15,6};
 
         System.out.println(Arrays.toString(quickSort(arr,0,arr.length-1)));
-
-
     }
 
     public static int[] quickSort(int[] arr, int low, int high){
@@ -36,7 +34,7 @@ class QuickSort {
         }
 
         int swapTemp = arr[i + 1];
-        arr[i + 1] = arr[end];
+        arr[i + 1] = arr[end]; //pivot
         arr[end] = swapTemp;
         return i + 1;
     }
