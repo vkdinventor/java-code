@@ -2,10 +2,13 @@ package backtracking;
 
 import java.util.ArrayList;
 
+//https://www.codesdope.com/course/algorithms-backtracking/
+
+// Time complexity O(n!)
 public class NQueenProblem {
 
     public static void main(String[] args) {
-        new NQueenProblem().solveNQueens(8);
+        new NQueenProblem().solveNQueens(4);
     }
 
     public ArrayList<ArrayList<String>> solveNQueens(int a) {
@@ -22,6 +25,7 @@ public class NQueenProblem {
             ArrayList<String> ans = new ArrayList<>();
             ArrayList<String> ansRev = new ArrayList<>();
             StringBuilder sb;
+            System.out.println("---new solution------");
             for(int i = 0; i < board.length; i++) {
                 sb = new StringBuilder();
                 for (int j = 0; j < board.length; j++) {
@@ -57,6 +61,8 @@ public class NQueenProblem {
         return false;
     }
 
+
+    //O(n)
     boolean canPlace(int row, int col, boolean[][] board) {
 
         int i = row;

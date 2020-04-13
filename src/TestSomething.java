@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TestSomething {
 
@@ -25,6 +27,69 @@ public class TestSomething {
         list1.add(12);
 
         Solution.maxInt(list1);
+
+        int ans = lastStoneWeight(new int[]{2,7,4,1,8,1});
+
+        boolean istrue = isAanagram("abc","bca");
+    }
+
+    static boolean isAanagram(String test, String target) {
+
+        if (test.length() == target.length()) {
+            Map<Character, Integer> map = new HashMap<>();
+
+            for (char ch : test.toCharArray()) {
+                Integer count = map.get(ch);
+                if (count == null) {
+                    map.put(ch, 1);
+                } else {
+                    map.put(ch, count + 1);
+                }
+            }
+
+            for (char ch : target.toCharArray()) {
+                Integer count = map.get(ch);
+                if (count == null) {
+                    return false;
+                } else {
+                    map.put(ch, count - 1);
+                }
+            }
+
+            for (Integer val : map.values()) {
+                if (val != 0) {
+                    return false;
+                }
+            }
+            return true;
+
+        }
+        return false;
+    }
+
+    public static int lastStoneWeight(int[] stones) {
+
+        int count = stones.length;
+        int lastIndex = stones.length - 1;
+        while (count > 1) {
+
+            Arrays.sort(stones);
+            if(stones[lastIndex] == stones[lastIndex - 1]){
+                count--;
+                stones[lastIndex] = 0;
+            }else{
+                stones[lastIndex] = stones[lastIndex] - stones[lastIndex - 1];
+            }
+            stones[lastIndex - 1] = 0;
+            count--;
+        }
+
+        for (int i = 0; i < stones.length; i++) {
+            if (stones[i] > 0) {
+                return stones[i];
+            }
+        }
+        return 0;
     }
 }
 
