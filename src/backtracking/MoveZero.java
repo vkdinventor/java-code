@@ -12,20 +12,18 @@ class MoveZero {
     }
     public void moveZeroes(int[] nums) {
 
-        int zero = -1;
-        int nonZero = -1;
-        for(int i= 0; i < nums.length-1; i++){
-            if(nums[i] == 0){
-                swap(nums, i, i+1);
+        int index = 0;
+        int i = 0;
+
+        for(i= 0; i < nums.length; i++){
+            if(nums[i] != 0){
+                nums[index]= nums[i];
+                index++;
             }
         }
-    }
-
-    public void swap(int[] arr, int i, int j){
-        //System.out.println("before: "+arr[i] +", "+ arr[j]);
-        int temp = arr[j];
-        arr[j] = arr[i];
-        arr[i] = temp;
-        //System.out.println("before: "+arr[i] +", "+ arr[j]);
+        while(index < nums.length){
+            nums[index]=0;
+            index++;
+        }
     }
 }
