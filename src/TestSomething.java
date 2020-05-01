@@ -185,16 +185,3 @@ class Solution {
 
 
 }
-
-
-class B {
-    public void someMethod() throws IOException {
-        System.out.println("Hello from class A");
-    }
-}
-class A extends B {
-    @Override
-    public void someMethod() {
-        System.out.println("Hello from B");
-    }
-}

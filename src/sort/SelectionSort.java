@@ -1,4 +1,4 @@
-;/*package whatever //do not write package name here */
+package sort;
 
 import java.io.*;
 import java.util.*;
