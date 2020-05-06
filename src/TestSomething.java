@@ -1,12 +1,12 @@
 ;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TestSomething {
 
@@ -29,6 +29,16 @@ public class TestSomething {
         Solution.maxInt(list1);
 
         int ans = lastStoneWeight(new int[]{2,7,4,1,8,1});
+        Map<Integer, Integer> map = new HashMap<>();
+        map.merge(0, 1, Integer::sum);
+
+        map.merge(1, 1, Integer::sum);
+        AtomicInteger ans1 = new AtomicInteger();
+        map.forEach( (k, v) -> {
+            if (v > list.size()){
+                ans1.set(k);
+            }
+        });
 
         boolean istrue = isAanagram("abc","bca");
     }
