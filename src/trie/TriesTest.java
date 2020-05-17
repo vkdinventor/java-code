@@ -21,47 +21,64 @@ public class TriesTest {
         System.out.println(head.search("techiedelight"));    // print false
 
         head.insert("techiedelight");
+        head.insert("vikashVerma");
 
         System.out.println(head.search("tech"));            // print true
         System.out.println(head.search("techi"));            // print true
         System.out.println(head.search("techie"));            // print true
         System.out.println(head.search("techiedelight"));    // print true
         System.out.println(head.search("vikash"));    // print true
+        System.out.println(head.search("vikashVerma"));
+
     }
 }
 
 
 class Trie {
-    private boolean isLeaf = false;
-    private Map<Character, Trie> trieMap;
 
-    Trie(){
-        isLeaf = false;
-        trieMap = new HashMap<>();
+    /** Initialize your data structure here. */
+    Map<Character, Trie> childMap;
+    boolean isLeaf;
+    public Trie() {
+        this.isLeaf = false;
+        this.childMap = new HashMap<>();
     }
 
-    public void insert(String key){
+    /** Inserts a word into the trie. */
+    public void insert(String word) {
 
         Trie curr = this;
-        for(char ch : key.toCharArray()){
-            if(trieMap.get(ch) == null){
-                trieMap.put(ch, new Trie());
+        for(Character ch : word.toCharArray()){
+            if(curr.childMap.get(ch) == null){
+                curr.childMap.put(ch, new Trie());
             }
-            curr = trieMap.get(ch);
+            curr = curr.childMap.get(ch);
         }
         curr.isLeaf = true;
     }
 
-    public boolean search(String key){
-
+    /** Returns if the word is in the trie. */
+    public boolean search(String word) {
         Trie curr = this;
-        for(char ch : key.toCharArray()){
-
-            curr = trieMap.get(ch);
-            if(curr == null){
+        for(Character ch : word.toCharArray()){
+            if(!curr.childMap.containsKey(ch)){
                 return false;
             }
+            curr = curr.childMap.get(ch);
         }
         return curr.isLeaf;
+
+    }
+
+    /** Returns if there is any word in the trie that starts with the given prefix. */
+    public boolean startsWith(String word) {
+        Trie curr = this;
+        for(Character ch : word.toCharArray()){
+            if(!curr.childMap.containsKey(ch)){
+                return false;
+            }
+            curr = curr.childMap.get(ch);
+        }
+        return true;
     }
 }

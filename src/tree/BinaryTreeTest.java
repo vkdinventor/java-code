@@ -262,6 +262,8 @@ class BinaryTree {
 
     }
 
+
+
     // worst case O(n^2)
     public static void levelOrder(TreeNode root, int level) {
         if (root == null) {
@@ -376,21 +378,6 @@ class BinaryTree {
         return;
     }
 
-    public static int isBalanced(TreeNode root) {
-        if (root == null) {
-            return 1;
-        }
-
-        if (root.left == null && (root.right != null && (root.right.right != null || root.right.left != null))) {
-            return 0;
-        }
-
-        if (root.right == null && (root.left != null && (root.left.right != null || root.left.left != null))) {
-            return 0;
-        }
-        return Math.min(isBalanced(root.left), isBalanced(root.right));
-    }
-
     static void rightView(TreeNode treeNode) {
         // Base Case
         if (treeNode == null)
@@ -416,6 +403,23 @@ class BinaryTree {
             }
         }
     }
+
+    public static int isBalanced(TreeNode root) {
+        if (root == null) {
+            return 1;
+        }
+
+        if (root.left == null && (root.right != null && (root.right.right != null || root.right.left != null))) {
+            return 0;
+        }
+
+        if (root.right == null && (root.left != null && (root.left.right != null || root.left.left != null))) {
+            return 0;
+        }
+        return Math.min(isBalanced(root.left), isBalanced(root.right));
+    }
+
+
 
     public static void printVertical(TreeNode treeNode){
         Map<Integer, List<Integer>> map = new TreeMap<>();
@@ -516,6 +520,7 @@ class BinaryTree {
         return isBST(A);
     }
 
+    //Time Complexity: O(n)
     private boolean isBST(TreeNode node) {
         // traverse the tree in inorder fashion and keep a track of previous node
         if (node != null) {

@@ -80,6 +80,13 @@ class LinkListLoopTest {
         }
     }
 
+    void printList(Node node, int count) {
+        while (node != null && count-- > 0) {
+            System.out.print(node.data + " ");
+            node = node.next;
+        }
+    }
+
     public static void removeTheLoop(Node head)
     {
         //Your code here
@@ -129,8 +136,10 @@ class LinkListLoopTest {
         list.head.next.next.next.next.next.next.next = new Node(8);
 
         // Creating a loop for testing
-        head.next.next.next.next.next.next.next.next = head.next.next;
+        head.next.next.next.next.next.next.next.next = head.next.next.next.next.next;
         //list.detectAndRemoveLoop(head);
+        System.out.println("Linked List before removing loop : ");
+        list.printList(head, 20);
         LinkListLoopTest.optimizedLoopRemoval(head);
         System.out.println("Linked List after removing loop : ");
         list.printList(head);
@@ -151,9 +160,11 @@ class LinkListLoopTest {
         if (slow == null || fast == null || slow != fast){
             return;
         }
+        System.out.println("Debug: loop slow:fast = "+slow.data+" "+fast.data);
 
         slow = head;
         while (slow.next != fast.next){
+            System.out.println("Debug: slow:fast = "+slow.data+" "+fast.data);
             slow = slow.next;
             fast = fast.next;
         }

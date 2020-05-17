@@ -36,8 +36,10 @@ public class NumberOfIsLand {
         int[] row = {-1, 1, 0, 0};
 
         for (int k = 0; k < 4; k++) {
-            if (isSafe(graph, visited, i+row[k], j+col[k])) {
-                doDfs(graph, visited, i + row[k], j + col[k]);
+            int r = i+row[k];
+            int c = j+col[k];
+            if (isSafe(graph, visited, r, c)) {
+                doDfs(graph, visited, r, c);
             }
         }
     }

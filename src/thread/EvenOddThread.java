@@ -1,7 +1,10 @@
+package thread;
+
 import java.util.concurrent.*;
 /*
 https://ide.geeksforgeeks.org/GT9pl69sr2
-Print even and odd nubmer usting two thread
+Print even and odd nubmer using two thread
+Seamaphore.
 */
 
 public class EvenOddThread {
@@ -64,7 +67,7 @@ class Even implements Runnable {
     }
 
     public void run() {
-        for (int i = 2; i <= 10; i = i + 2) {
+        for (int i = 2; i <= 1000; i = i + 2) {
             sp.printEven(i);
         }
     }

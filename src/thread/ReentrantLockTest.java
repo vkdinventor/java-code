@@ -7,11 +7,19 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+
+/**
+ * ReentrantLock -> similar to synchronized block
+ * Condition condition = new ReentrantLock().newCondition();
+ * condition.await() ->  wait();
+ * condition.signal() -> notify()
+ */
 class ReentrantLockTest {
     public static void main(String[] args) {
-        ReentrantLock rel = new ReentrantLock(true);
+        Lock rel = new ReentrantLock(true);
         Semaphore semaphore = new Semaphore(4);
         ExecutorService pool = Executors.newFixedThreadPool(2);
         Runnable w1 = new worker(rel, "Job1");
@@ -22,7 +30,6 @@ class ReentrantLockTest {
         pool.execute(w2);
         pool.execute(w3);
         semaphore.release();
-        rel.unlock();
         pool.execute(w4);
         pool.shutdown();
     }
@@ -33,8 +40,8 @@ class worker implements Runnable {
     String name;
     ReentrantLock re;
 
-    public worker(ReentrantLock rl, String n) {
-        re = rl;
+    public worker(Lock rl, String n) {
+        re = (ReentrantLock) rl;
         name = n;
     }
 
@@ -49,17 +56,13 @@ class worker implements Runnable {
                 try {
                     Date d = new Date();
                     SimpleDateFormat ft = new SimpleDateFormat("hh:mm:ss");
-                    System.out.println("task name - " + name
-                            + " outer lock acquired at "
-                            + ft.format(d)
-                            + " Doing outer work");
+                    System.out.println("task name - " + name+ " outer lock acquired at " + ft.format(d) + " Doing outer work");
                     Thread.sleep(1500);
 
                     // Getting Inner Lock
                     re.lock();
                     try {
                         d = new Date();
-                        ft = new SimpleDateFormat("hh:mm:ss");
                         System.out.println("task name - " + name+ " inner lock acquired at "+ ft.format(d)+ " Doing inner work");
                         System.out.println("Lock Hold Count - " + re.getHoldCount());
                         Thread.sleep(1500);
@@ -79,7 +82,7 @@ class worker implements Runnable {
                     //Outer lock release
                     System.out.println("task name - " + name + " releasing outer lock");
                     re.unlock();
-                    System.out.println("Lock Hold Count - " + re.getHoldCount());
+                    System.out.println("Lock Hold Count - " + re);
                 }
             } else {
                 System.out.println("task name - " + name + " waiting for lock");

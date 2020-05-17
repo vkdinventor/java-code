@@ -38,7 +38,7 @@
 * Queue Implementation using Linked List
 * Remove duplicates from a linked list
 * Rearrange the linked list so that it has alternating high, low values
-* Rearrange a Linked List by Separating Odd Nodes from the Even Ones
+* Rearrange a Linked List by Separating thread.Odd Nodes from the thread.Even Ones
 * Calculate height of a binary tree with leaf nodes forming a circular doubly linked list
 * XOR Linked List: Overview and Implementation
 * Convert a multilevel linked list to a singly linklist.

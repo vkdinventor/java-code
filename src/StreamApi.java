@@ -16,6 +16,14 @@ public class StreamApi {
         List<String> person = Arrays.asList("abc", "DEF", "AesF", "GADESAD", "DSDGEW", "OPSIF");
 
         person.stream().peek(System.out::println).forEach(System.out::println);
+        person.stream().reduce(String::concat).get();
+
+        int[] arr = {1,2,3,4,5,6,7,8,9,0};
+        Arrays.stream(arr).sum();
+
+        // for primitive use sum() for Interger non primitive use reduce;
+
+        person.stream().mapToInt( v -> 1).sum();
 
         person.stream()
                 .map( v -> v.toLowerCase())
