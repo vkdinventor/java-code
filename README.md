@@ -1,5 +1,12 @@
 # java-code
 
+How to solve DP problem:
+
+https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns
+
+How to solve DP string problem
+https://leetcode.com/discuss/general-discussion/651719/how-to-solve-dp-string-template-and-4-steps-to-be-followed
+
 HR interview question.
 https://www.careerride.com/hr-interview-questions-for-experienced.aspx
 
