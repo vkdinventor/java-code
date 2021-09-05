@@ -4,6 +4,14 @@ How to solve DP problem:
 
 https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns
 
+https://leetcode.com/list/55ac4kuc - (Min - max path to target)
+https://leetcode.com/list/55ajm50i - (distinct ways)
+https://leetcode.com/list/55aj8s16 - (merging intervals)
+https://leetcode.com/list/55afh7m7 - (DP on strings)
+https://leetcode.com/list/55af7bu7 - (decision making)
+
+
+
 How to solve DP string problem
 https://leetcode.com/discuss/general-discussion/651719/how-to-solve-dp-string-template-and-4-steps-to-be-followed
 
