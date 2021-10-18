@@ -20,7 +20,7 @@ public class LongestComnSubSeq {
         for(int i=1; i <= n; i++){
             for (int j= 1; j <= m; j++){
                 if(str1.charAt(j-1) == str2.charAt(i-1)){
-                    dp[i][j] = 1 + Math.max(dp[i][j-1],dp[i-1][j]); // or simply 1 + dp[i-1][j-1]
+                    dp[i][j] = 1 + dp[i-1][j-1]
                 }else {
                     dp[i][j] =  Math.max(dp[i][j-1],dp[i-1][j]);
                 }
